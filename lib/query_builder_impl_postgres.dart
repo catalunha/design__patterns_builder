@@ -1,6 +1,6 @@
 import 'package:design__patterns_builder/query_builder.dart';
 
-class QueryBuilderImplMysql extends QueryBuilder {
+class QueryBuilderImplPostgres extends QueryBuilder {
   var _selectPart = '';
   var _selectType = '';
   var _wherePart = <String>[];
@@ -34,7 +34,7 @@ class QueryBuilderImplMysql extends QueryBuilder {
   @override
   QueryBuilder limit({required String start, required String offset}) {
     if (_selectType == 'select') {
-      _limitPart = ' LIMIT $start, $offset';
+      _limitPart = ' LIMIT $start OFFSET $offset';
     } else {
       throw Exception('LIMIT can only be added to SELECT');
     }
